@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const Todo = require('./models/todo')
 
 // dotenv
 if (process.env.NODE_ENV !== 'production') {
@@ -25,7 +26,10 @@ app.set('view engine', 'hbs')
 
 // route
 app.get('/', (req, res) => {
-  res.render('index')
+  Todo.find()
+    .lean()
+    .then(todos => res.render('index', { todos }))
+    .catch(error => console.error(error))  
 })
 
 // listen port
