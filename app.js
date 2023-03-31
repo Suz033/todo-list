@@ -77,10 +77,17 @@ app.post('/todos/:id/edit', (req, res) => {
       todo.name = name
       return todo.save()
     })
-    .then(() => res.redirect(`/todos/${id}`))
+    .then(() => res.redirect(`/`))
     .catch(error => console.log(error))
 })
 
+app.post('/todos/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Todo.findById(id)
+    .then(todo => todo.deleteOne())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 // listen port
 const port = 3000
