@@ -24,7 +24,7 @@ app.use(methodOverride('_method'))
 app.use('/', routes)
 
 // listen port
-const port = 3000
-app.listen(port, () => {
-  console.log(`App is running on http://localhost:${port}.`)
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}.`)
 })
