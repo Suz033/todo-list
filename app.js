@@ -24,7 +24,7 @@ app.use(methodOverride('_method'))
 
 // session
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
